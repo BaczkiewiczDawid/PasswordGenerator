@@ -1,5 +1,5 @@
 import React from "react";
-import CharacterLengh from "./modules/HomeModule/components/CharacterLengh";
+import CharacterLengh from "./modules/HomeModule/components/CharacterLength";
 import CheckboxContainer from "./modules/HomeModule/components/CheckboxContainer";
 import PasswordStrength from "./modules/HomeModule/components/PasswordStrength";
 import PasswordGenerate from "./modules/HomeModule/components/PasswordGenerate";
