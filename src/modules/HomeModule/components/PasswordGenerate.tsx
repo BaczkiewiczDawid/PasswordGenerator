@@ -8,19 +8,22 @@ const PasswordGenerate = () => {
 
   let password: string[] = [];
   const passwordLength = 6;
+  const selectedPatterns: string[] = [lowerCaseLetters];
+
+  selectedPatterns.push(symbols)
 
   const generatePassword = () => {
-    const a = [lowerCaseLetters, upperCaseLetters, symbols, numbers];
     password = [];
 
     for (let i = 1; i <= passwordLength; i++) {
-      const randomValue = Math.floor(Math.random() * 4);
-      const randomized = a[randomValue][Math.floor(Math.random() * a[randomValue].length)]
+      const randomValue = Math.floor(Math.random() * selectedPatterns.length);
+      const randomized = selectedPatterns[randomValue][Math.floor(Math.random() * selectedPatterns[randomValue].length)]
       password.push(randomized)
     }
 
     const finalPassword = password.join('')
     console.log(finalPassword)
+    console.log(selectedPatterns)
   }
 
   return (
