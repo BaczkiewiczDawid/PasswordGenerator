@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react';
+import { PasswordContext } from '../context/PasswordOptionsContext'
 
 const PasswordGenerate = () => {
   const lowerCaseLetters  = 'abcdefghijklmnopqrstuwxyz';
@@ -11,6 +12,9 @@ const PasswordGenerate = () => {
   const selectedPatterns: string[] = [lowerCaseLetters];
 
   selectedPatterns.push(symbols)
+
+  const { passwordOptions, setPasswordOptions }: any = useContext(PasswordContext)
+
 
   const generatePassword = () => {
     password = [];

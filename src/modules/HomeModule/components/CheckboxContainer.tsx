@@ -1,33 +1,12 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { CheckboxTypes } from '../types/types';
+import {PasswordContext} from '../context/PasswordOptionsContext'
 
 const CheckboxContainer = () => {
 
-  const initialState = [
-    {
-      name: 'lowerCaseLetters',
-      text: 'Include Lowercase Letters',
-      isChecked: true,
-    },
-    {
-      name: 'upperCaseLetters',
-      text: 'Include Upeercase Letters',
-      isChecked: false,
-    },
-    {
-      name: 'symbols',
-      text: 'Include Symbols',
-      isChecked: false,
-    },
-    {
-      name: 'numbers',
-      text: 'Include Numbers',
-      isChecked: false,
-    }
-  ]
-
   const [selectedPatterns, setSelectedPatterns] = useState<string[]>(['lowerCaseLetters']);
-  const [passwordOptions, setPasswordOptions] = useState(initialState);
+
+  const { passwordOptions, setPasswordOptions }: any = useContext(PasswordContext)
 
   const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const findCheckbox = (checkbox: CheckboxTypes) => {
@@ -36,7 +15,7 @@ const CheckboxContainer = () => {
 
     const findedCheckbox = passwordOptions.find(findCheckbox)
 
-    const newState = passwordOptions.map((obj) => {
+    const newState = passwordOptions.map((obj: any) => {
       if (obj.name === findedCheckbox?.name) {
         const isChecked = findedCheckbox.isChecked;
 
@@ -50,7 +29,7 @@ const CheckboxContainer = () => {
   }
 
   useEffect(() => {
-    passwordOptions.forEach((el) => {
+    passwordOptions.forEach((el: any) => {
       if (el.isChecked) {
         if (!selectedPatterns.includes(el.name)) {
           setSelectedPatterns((prevState) => [
@@ -72,7 +51,7 @@ const CheckboxContainer = () => {
 
   return (
     <div className="section">
-      {passwordOptions.map((el) => {
+      {passwordOptions.map((el: any) => {
         return (
           <div key={el.name} className="section__row">
             <input name={el.name} value={el.name} checked={el.isChecked} onChange={handleCheckboxChange} type="checkbox" className="section__checkbox" />
