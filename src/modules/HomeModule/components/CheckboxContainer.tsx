@@ -1,12 +1,10 @@
 import React, { useState, useEffect, useContext } from 'react'
 import { CheckboxTypes } from '../types/types';
-import {PasswordContext} from '../context/PasswordOptionsContext'
+import { PasswordContext } from '../context/PasswordOptionsContext';
 
 const CheckboxContainer = () => {
 
-  const [selectedPatterns, setSelectedPatterns] = useState<string[]>(['lowerCaseLetters']);
-
-  const { passwordOptions, setPasswordOptions }: any = useContext(PasswordContext)
+  const { passwordOptions, setPasswordOptions, selectedPatterns, setSelectedPatterns }: any = useContext(PasswordContext)
 
   const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const findCheckbox = (checkbox: CheckboxTypes) => {
@@ -32,7 +30,7 @@ const CheckboxContainer = () => {
     passwordOptions.forEach((el: any) => {
       if (el.isChecked) {
         if (!selectedPatterns.includes(el.name)) {
-          setSelectedPatterns((prevState) => [
+          setSelectedPatterns((prevState: any) => [
             ...prevState,
             el.name
           ])
@@ -45,10 +43,6 @@ const CheckboxContainer = () => {
     })
   }, [passwordOptions])
 
-  const show = () => {
-    console.log(selectedPatterns)
-  }
-
   return (
     <div className="section">
       {passwordOptions.map((el: any) => {
@@ -59,7 +53,6 @@ const CheckboxContainer = () => {
           </div>
         )
       })}
-      <button onClick={show}>Show</button>
     </div>
   )
 }

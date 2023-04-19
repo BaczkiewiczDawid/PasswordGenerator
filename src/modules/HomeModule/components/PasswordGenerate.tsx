@@ -7,27 +7,34 @@ const PasswordGenerate = () => {
   const symbols = '!@#$%^&*';
   const numbers = '0123456789';
 
+  // const [pattern, setPattern] = useState('');
+  const pattern: any[] = [];
+
+  const { passwordOptions, setPasswordOptions, selectedPatterns }: any = useContext(PasswordContext)
+
   let password: string[] = [];
   const passwordLength = 6;
-  const selectedPatterns: string[] = [lowerCaseLetters];
-
-  selectedPatterns.push(symbols)
-
-  const { passwordOptions, setPasswordOptions }: any = useContext(PasswordContext)
-
 
   const generatePassword = () => {
     password = [];
 
+    selectedPatterns.forEach((el: any) => {
+      pattern.push(passwordOptions.find((x: any) => x.name === el).value)
+    })
+
     for (let i = 1; i <= passwordLength; i++) {
       const randomValue = Math.floor(Math.random() * selectedPatterns.length);
-      const randomized = selectedPatterns[randomValue][Math.floor(Math.random() * selectedPatterns[randomValue].length)]
+      const randomized = pattern[randomValue][Math.floor(Math.random() * selectedPatterns[randomValue].length)]
       password.push(randomized)
     }
 
     const finalPassword = password.join('')
+
+
     console.log(finalPassword)
-    console.log(selectedPatterns)
+
+
+    console.log(pattern)
   }
 
   return (
