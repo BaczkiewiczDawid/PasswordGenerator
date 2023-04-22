@@ -1,4 +1,5 @@
-import React, { useState, useContext, createContext } from 'react';
+import React, { useState, createContext } from 'react';
+import { PasswordOptions } from '../types/types';
 
 export const PasswordContext = createContext({});
 
@@ -30,11 +31,12 @@ const PasswordOptionsContext = ({ children }: any) => {
         }
       ]
 
-    const [passwordOptions, setPasswordOptions] = useState(initialState);
+    const [passwordOptions, setPasswordOptions] = useState<PasswordOptions[]>(initialState);
     const [selectedPatterns, setSelectedPatterns] = useState<string[]>(['lowerCaseLetters']);
+    const [passwordLength, setPasswordLength] = useState<number>(6);
 
   return (
-    <PasswordContext.Provider value={{ passwordOptions, setPasswordOptions, selectedPatterns, setSelectedPatterns }}>
+    <PasswordContext.Provider value={{ passwordOptions, setPasswordOptions, selectedPatterns, setSelectedPatterns, passwordLength, setPasswordLength }}>
         {children}
     </PasswordContext.Provider>
   )

@@ -3,3 +3,10 @@ export interface CheckboxTypes {
     text: string,
     isChecked: boolean
   }
+
+  export interface PasswordOptions {
+    name: string,
+    text: string,
+    value: string,
+    isChecked: boolean
+  }

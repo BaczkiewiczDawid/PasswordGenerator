@@ -1,25 +1,19 @@
-import React, { useState, useContext } from 'react';
-import { PasswordContext } from '../context/PasswordOptionsContext'
+import React, { useContext } from 'react';
+import { PasswordContext } from '../context/PasswordOptionsContext';
+import { PasswordOptions } from '../types/types';
 
 const PasswordGenerate = () => {
-  const lowerCaseLetters  = 'abcdefghijklmnopqrstuwxyz';
-  const upperCaseLetters = 'ABCDEFGHIJKLMNOPQRSTUWXYZ';
-  const symbols = '!@#$%^&*';
-  const numbers = '0123456789';
+  const pattern: string[] = [];
 
-  // const [pattern, setPattern] = useState('');
-  const pattern: any[] = [];
-
-  const { passwordOptions, setPasswordOptions, selectedPatterns }: any = useContext(PasswordContext)
+  const { passwordOptions, selectedPatterns, passwordLength }: any = useContext(PasswordContext)
 
   let password: string[] = [];
-  const passwordLength = 6;
 
   const generatePassword = () => {
     password = [];
 
-    selectedPatterns.forEach((el: any) => {
-      pattern.push(passwordOptions.find((x: any) => x.name === el).value)
+    selectedPatterns.forEach((el: string) => {
+      pattern.push(passwordOptions.find((x: PasswordOptions) => x.name === el).value)
     })
 
     for (let i = 1; i <= passwordLength; i++) {

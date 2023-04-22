@@ -9,8 +9,8 @@ const App: React.FC = () => (
   <>
     <div className="main">
       <h1 className="main__title">Password Generator</h1>
-      <CharacterLengh />
       <PasswordOptionsContext>
+        <CharacterLengh />
         <CheckboxContainer />
         <PasswordStrength />
         <PasswordGenerate />

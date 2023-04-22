@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
+import { PasswordContext } from "../context/PasswordOptionsContext";
 
 const CharacterLength = () => {
-  const [passwordLength, setPasswordLength] = useState<number>(6);
+  const { passwordLength, setPasswordLength }: any = useContext(PasswordContext);
   const minLength = 4;
   const maxLength = 16;
 
