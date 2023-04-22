@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useContext } from 'react'
-import { CheckboxTypes } from '../types/types';
+import React, { useEffect, useContext } from 'react'
+import { CheckboxTypes, PasswordOptions } from '../types/types';
 import { PasswordContext } from '../context/PasswordOptionsContext';
 
 const CheckboxContainer = () => {
@@ -13,7 +13,7 @@ const CheckboxContainer = () => {
 
     const findedCheckbox = passwordOptions.find(findCheckbox)
 
-    const newState = passwordOptions.map((obj: any) => {
+    const newState = passwordOptions.map((obj: PasswordOptions) => {
       if (obj.name === findedCheckbox?.name) {
         const isChecked = findedCheckbox.isChecked;
 
@@ -27,10 +27,10 @@ const CheckboxContainer = () => {
   }
 
   useEffect(() => {
-    passwordOptions.forEach((el: any) => {
+    passwordOptions.forEach((el: PasswordOptions) => {
       if (el.isChecked) {
         if (!selectedPatterns.includes(el.name)) {
-          setSelectedPatterns((prevState: any) => [
+          setSelectedPatterns((prevState: string[]) => [
             ...prevState,
             el.name
           ])
@@ -45,7 +45,7 @@ const CheckboxContainer = () => {
 
   return (
     <div className="section">
-      {passwordOptions.map((el: any) => {
+      {passwordOptions.map((el: PasswordOptions) => {
         return (
           <div key={el.name} className="section__row">
             <input name={el.name} value={el.name} checked={el.isChecked} onChange={handleCheckboxChange} type="checkbox" className="section__checkbox" />
